@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Branch {
+  id          String   @id @default(uuid())
+  name        String
+  address     String
+  latitude    Float
+  longitude   Float
+  phone       String
+  email       String
+  openingTime String
+  closingTime String
+  imageUrl    String?
+
+  orders      Order[]
+  reservations Reservation[]
+}
+
+model Category {
+  id    String @id @default(uuid())
+  name  String
+  items MenuItem[]
+}
+
+model MenuItem {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  price       Float
+  imageUrl    String?
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+  isVegan     Boolean  @default(false)
+  isGlutenFree Boolean @default(false)
+  isHalal     Boolean  @default(false)
+
+  orderItems  OrderItem[]
+}
+
+model Order {
+  id         String      @id @default(uuid())
+  createdAt  DateTime    @default(now())
+  status     String      @default("PENDING") // PENDING, PAID, COMPLETED
+  total      Float
+  branchId   String
+  branch     Branch      @relation(fields: [branchId], references: [id])
+  items      OrderItem[]
+}
+
+model OrderItem {
+  id         String   @id @default(uuid())
+  orderId    String
+  order      Order    @relation(fields: [orderId], references: [id])
+  menuItemId String
+  menuItem   MenuItem @relation(fields: [menuItemId], references: [id])
+  quantity   Int
+  price      Float
+}
+
+model Reservation {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  date      DateTime
+  partySize Int
+  name      String
+  email     String
+  phone     String
+  branchId  String
+  branch    Branch   @relation(fields: [branchId], references: [id])
+}
