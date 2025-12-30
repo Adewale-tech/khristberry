@@ -1,0 +1,52 @@
+
+> restaurant-app@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.1 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+- Environments: .env
+
+✓ Starting...
+✓ Ready in 1166ms
+ GET / 200 in 2.3s (compile: 884ms, render: 1392ms)
+ GET /menu 200 in 313ms (compile: 111ms, render: 202ms)
+ GET /cart 200 in 321ms (compile: 135ms, render: 185ms)
+ GET / 200 in 1761ms (compile: 191ms, render: 1570ms)
+ GET /menu 200 in 1473ms (compile: 16ms, render: 1457ms)
+ GET / 200 in 308ms (compile: 5ms, render: 304ms)
+ GET / 200 in 878ms (compile: 309ms, render: 569ms)
+ GET /locations 200 in 3.0s (compile: 2.9s, render: 118ms)
+ GET /menu 200 in 517ms (compile: 164ms, render: 353ms)
+ GET /cart 200 in 449ms (compile: 173ms, render: 276ms)
+ GET /checkout 200 in 920ms (compile: 886ms, render: 34ms)
+ GET / 200 in 240ms (compile: 5ms, render: 235ms)
+ GET /locations 200 in 55ms (compile: 3ms, render: 52ms)
+ GET /menu 200 in 268ms (compile: 6ms, render: 261ms)
+ GET /cart 200 in 94ms (compile: 4ms, render: 91ms)
+ GET /checkout 200 in 26ms (compile: 4ms, render: 22ms)
+ GET / 200 in 190ms (compile: 3ms, render: 187ms)
+ GET /locations 200 in 50ms (compile: 3ms, render: 48ms)
+ GET /menu 200 in 131ms (compile: 3ms, render: 128ms)
+ GET /cart 200 in 105ms (compile: 4ms, render: 101ms)
+ GET /checkout 200 in 25ms (compile: 3ms, render: 22ms)
+ GET / 200 in 216ms (compile: 4ms, render: 212ms)
+ GET /locations 200 in 54ms (compile: 4ms, render: 50ms)
+ GET /menu 200 in 146ms (compile: 3ms, render: 143ms)
+ GET /cart 200 in 128ms (compile: 3ms, render: 124ms)
+ GET /checkout 200 in 234ms (compile: 187ms, render: 46ms)
+ GET / 200 in 627ms (compile: 25ms, render: 602ms)
+ GET /locations 200 in 65ms (compile: 5ms, render: 60ms)
+ GET /menu 200 in 232ms (compile: 9ms, render: 223ms)
+ GET /cart 200 in 134ms (compile: 5ms, render: 129ms)
+ GET /checkout 200 in 23ms (compile: 4ms, render: 19ms)
+ GET / 200 in 246ms (compile: 5ms, render: 241ms)
+ GET /locations 200 in 51ms (compile: 3ms, render: 47ms)
+ GET /menu 200 in 192ms (compile: 6ms, render: 185ms)
+ GET /cart 200 in 146ms (compile: 3ms, render: 143ms)
+ GET /checkout 200 in 37ms (compile: 3ms, render: 34ms)
+ GET / 200 in 234ms (compile: 5ms, render: 230ms)
+ GET /locations 200 in 53ms (compile: 3ms, render: 50ms)
+ GET /menu 200 in 212ms (compile: 4ms, render: 209ms)
+ GET /cart 200 in 130ms (compile: 3ms, render: 126ms)
+ GET /checkout 200 in 27ms (compile: 4ms, render: 23ms)

@@ -1,32 +1,34 @@
 import Hero from "@/components/home/hero";
-import BranchLocator from "@/components/home/branch-locator";
+import Features from "@/components/home/features";
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-10">
+    <main className="flex flex-col min-h-screen">
       <Hero />
-      <BranchLocator />
+      <Features />
 
-      {/* Testimonials or Highlights could go here */}
-      <section className="bg-muted/30 py-16">
-        <div className="container text-center">
-          <h2 className="text-3xl font-bold mb-8">Why Choose Us?</h2>
+      {/* Testimonials Section */}
+      <section className="bg-background py-20">
+        <div className="container px-4 text-center">
+          <h2 className="text-3xl font-bold mb-12 text-foreground">What Our Customers Say</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 rounded-lg bg-background shadow-sm">
-              <h3 className="text-xl font-semibold mb-2">Fresh Ingredients</h3>
-              <p className="text-muted-foreground">We source only the finest, freshest ingredients for our dishes.</p>
-            </div>
-            <div className="p-6 rounded-lg bg-background shadow-sm">
-              <h3 className="text-xl font-semibold mb-2">Expert Chefs</h3>
-              <p className="text-muted-foreground">Our culinary team brings years of experience and passion.</p>
-            </div>
-            <div className="p-6 rounded-lg bg-background shadow-sm">
-              <h3 className="text-xl font-semibold mb-2">Atmosphere</h3>
-              <p className="text-muted-foreground">Designed for comfort and style, perfect for any occasion.</p>
-            </div>
+            {[
+              { name: "Chinedu O.", text: "The Suya Pizza at the Bwari branch is literally out of this world. Highly recommend!", role: "Law Student" },
+              { name: "Sarah M.", text: "Best Chinese food in the area. The Chow Mein tastes just like what I had in London.", role: "Resident" },
+              { name: "Emmanuel K.", text: "Perfect spot for our weekend meetings. The coffee and meat pies are top notch.", role: "Business Consultant" }
+            ].map((t, i) => (
+              <div key={i} className="p-8 rounded-2xl bg-muted/30 border border-border/50 hover:shadow-md transition-shadow">
+                <div className="flex justify-center mb-4 text-secondary text-2xl">★★★★★</div>
+                <p className="text-muted-foreground mb-6 italic">"{t.text}"</p>
+                <div>
+                  <div className="font-bold text-foreground">{t.name}</div>
+                  <div className="text-xs text-primary font-medium uppercase tracking-wide">{t.role}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 }
