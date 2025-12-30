@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import Image from "next/image"
 import { useBranchStore } from "@/components/branch-selector"
 import { useCartStore } from "@/lib/store"
@@ -39,10 +39,12 @@ export function MenuClient({ initialCategories }: { initialCategories: Category[
   }, [])
 
   // Custom sorting: Promoted items first
-  const sortedCategories = [...initialCategories].sort((a, b) => {
-    const priority = ["Nigerian Organic", "Pizza", "Chinese", "Grill", "Intercontinental", "Bakery"]
-    return priority.indexOf(a.name) - priority.indexOf(b.name)
-  })
+  const sortedCategories = useMemo(() => {
+    return [...initialCategories].sort((a, b) => {
+      const priority = ["Nigerian Organic", "Pizza", "Chinese", "Grill", "Intercontinental", "Bakery"]
+      return priority.indexOf(a.name) - priority.indexOf(b.name)
+    })
+  }, [initialCategories])
 
   // Ensure activeCategory is set only after mounting to avoid hydration mismatch
   const [activeCategory, setActiveCategory] = useState(sortedCategories[0]?.id || "")
