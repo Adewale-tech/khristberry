@@ -4,6 +4,7 @@ import "./globals.css"; // Import global styles
 import { prisma } from "@/lib/db";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { ChatWidget } from "@/components/ai/chat-widget";
 
 // const geistSans = localFont({
 //   src: "./fonts/GeistVF.woff",
@@ -41,6 +42,7 @@ export default async function RootLayout({
             {children}
           </div>
           <Footer />
+          <ChatWidget />
         </div>
       </body>
     </html>

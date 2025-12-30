@@ -1,11 +1,15 @@
 import Hero from "@/components/home/hero";
 import Features from "@/components/home/features";
+import SpiceGarden from "@/components/home/spice-garden";
+import VibeGallery from "@/components/home/vibe-gallery";
 
 export default function Home() {
   return (
     <main className="flex flex-col min-h-screen">
       <Hero />
+      <SpiceGarden />
       <Features />
+      <VibeGallery />
 
       {/* Testimonials Section */}
       <section className="bg-background py-20">
