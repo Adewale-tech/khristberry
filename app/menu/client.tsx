@@ -122,7 +122,7 @@ export function MenuClient({ initialCategories }: { initialCategories: Category[
             </div>
         </div>
 
-        <AnimatePresence mode="wait">
+        <AnimatePresence>
             {sortedCategories.map((cat) => (
             <TabsContent key={cat.id} value={cat.id} className="mt-0">
                 <motion.div
