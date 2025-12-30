@@ -10,13 +10,13 @@ import { useEffect, useState } from "react"
 
 export default function CartPage() {
   const [isMounted, setIsMounted] = useState(false)
-  const { items, removeItem, updateQuantity, total } = useCartStore()
+  const { items, removeItem, updateQuantity, total, _hasHydrated } = useCartStore()
 
   useEffect(() => {
     setIsMounted(true)
   }, [])
 
-  if (!isMounted) {
+  if (!isMounted || !_hasHydrated) {
     return <div className="min-h-screen pt-28 pb-16 container px-4">Loading cart...</div>
   }
 

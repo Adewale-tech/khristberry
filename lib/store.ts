@@ -16,6 +16,8 @@ interface CartStore {
   updateQuantity: (id: string, quantity: number) => void
   clearCart: () => void
   total: () => number
+  _hasHydrated: boolean
+  setHasHydrated: (state: boolean) => void
 }
 
 export const useCartStore = create<CartStore>()(
@@ -46,10 +48,15 @@ export const useCartStore = create<CartStore>()(
       clearCart: () => set({ items: [] }),
       total: () => {
         return get().items.reduce((acc, item) => acc + (item.price * item.quantity), 0)
-      }
+      },
+      _hasHydrated: false,
+      setHasHydrated: (state) => set({ _hasHydrated: state })
     }),
     {
       name: 'cart-storage',
+      onRehydrateStorage: () => (state) => {
+        state?.setHasHydrated(true)
+      },
     }
   )
 )

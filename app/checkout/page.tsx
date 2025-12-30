@@ -12,13 +12,13 @@ export default function CheckoutPage() {
   const [isMounted, setIsMounted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
-  const { items, total, clearCart } = useCartStore()
+  const { items, total, clearCart, _hasHydrated } = useCartStore()
 
   useEffect(() => {
     setIsMounted(true)
   }, [])
 
-  if (!isMounted) return <div className="pt-24 container">Loading...</div>
+  if (!isMounted || !_hasHydrated) return <div className="pt-24 container">Loading...</div>
 
   // Show message instead of redirecting immediately to avoid hydration race conditions
   if (items.length === 0) {
