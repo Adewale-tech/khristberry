@@ -2,61 +2,61 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
 export interface CartItem {
-  id: string
+  id: string // MenuItem ID
   name: string
   price: number
   quantity: number
-  imageUrl?: string | null
+  image?: string | null
 }
 
-interface StoreState {
-  selectedBranchId: string | null
-  setSelectedBranchId: (id: string | null) => void
-
-  cart: CartItem[]
-  addToCart: (item: CartItem) => void
-  removeFromCart: (itemId: string) => void
-  updateQuantity: (itemId: string, quantity: number) => void
+interface CartStore {
+  items: CartItem[]
+  addItem: (item: CartItem) => void
+  removeItem: (id: string) => void
+  updateQuantity: (id: string, quantity: number) => void
   clearCart: () => void
-
-  isCartOpen: boolean
-  setIsCartOpen: (isOpen: boolean) => void
+  total: () => number
+  _hasHydrated: boolean
+  setHasHydrated: (state: boolean) => void
 }
 
-export const useStore = create<StoreState>()(
+export const useCartStore = create<CartStore>()(
   persist(
-    (set) => ({
-      selectedBranchId: null,
-      setSelectedBranchId: (id) => set({ selectedBranchId: id }),
-
-      cart: [],
-      addToCart: (item) => set((state) => {
-        const existingItem = state.cart.find((i) => i.id === item.id)
+    (set, get) => ({
+      items: [],
+      addItem: (newItem) => set((state) => {
+        const existingItem = state.items.find(item => item.id === newItem.id)
         if (existingItem) {
           return {
-            cart: state.cart.map((i) =>
-              i.id === item.id ? { ...i, quantity: i.quantity + item.quantity } : i
+            items: state.items.map(item =>
+              item.id === newItem.id
+                ? { ...item, quantity: item.quantity + newItem.quantity }
+                : item
             )
           }
         }
-        return { cart: [...state.cart, item] }
+        return { items: [...state.items, newItem] }
       }),
-      removeFromCart: (itemId) => set((state) => ({
-        cart: state.cart.filter((i) => i.id !== itemId)
+      removeItem: (id) => set((state) => ({
+        items: state.items.filter(item => item.id !== id)
       })),
-      updateQuantity: (itemId, quantity) => set((state) => ({
-        cart: state.cart.map((i) =>
-          i.id === itemId ? { ...i, quantity } : i
-        )
+      updateQuantity: (id, quantity) => set((state) => ({
+        items: quantity <= 0
+          ? state.items.filter(item => item.id !== id)
+          : state.items.map(item => item.id === id ? { ...item, quantity } : item)
       })),
-      clearCart: () => set({ cart: [] }),
-
-      isCartOpen: false,
-      setIsCartOpen: (isOpen) => set({ isCartOpen: isOpen }),
+      clearCart: () => set({ items: [] }),
+      total: () => {
+        return get().items.reduce((acc, item) => acc + (item.price * item.quantity), 0)
+      },
+      _hasHydrated: false,
+      setHasHydrated: (state) => set({ _hasHydrated: state })
     }),
     {
-      name: 'restaurant-storage',
-      skipHydration: true,
+      name: 'cart-storage',
+      onRehydrateStorage: () => (state) => {
+        state?.setHasHydrated(true)
+      },
     }
   )
 )
