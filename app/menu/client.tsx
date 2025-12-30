@@ -76,9 +76,7 @@ export function MenuClient({ initialCategories }: { initialCategories: Category[
   }
 
   // Branch Specific Logic (Mocked for visual demonstration)
-  const branchName = selectedBranchId === "branch-uuid-bwari" ? "Bwari Branch" :
-                     selectedBranchId === "branch-uuid-kogo" ? "Kogo Branch" : "Selected Branch"
-
+  const branchName = selectedBranchId ? "Selected Branch" : "No Branch Selected"
   return (
     <div className="container px-4 min-h-screen">
       {/* Menu Header with Branch Context */}
