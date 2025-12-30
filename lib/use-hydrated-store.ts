@@ -1,15 +1,15 @@
-"use client"
+import { useState, useEffect } from 'react'
 
-import { useEffect, useState } from "react"
-import { useStore } from "@/lib/store"
-
-export const useHydratedStore = ((selector: any) => {
-  const store = useStore(selector)
+export function useHydratedStore<T, F>(
+  store: (callback: (state: T) => unknown) => unknown,
+  selector: (state: T) => F
+) {
   const [hydrated, setHydrated] = useState(false)
+  const result = store(selector) as F
 
   useEffect(() => {
     setHydrated(true)
   }, [])
 
-  return hydrated ? store : undefined
-}) as typeof useStore
+  return hydrated ? result : undefined
+}
