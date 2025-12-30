@@ -56,7 +56,7 @@ async function main() {
 
   // 2. Create Categories
   const categoriesMap: Record<string, string> = {}
-  const categoryNames = ["Pizza", "Chinese", "Bakery", "Grill", "Intercontinental"]
+  const categoryNames = ["Pizza", "Chinese", "Bakery", "Grill", "Intercontinental", "Nigerian Organic"]
 
   for (const name of categoryNames) {
     const cat = await prisma.category.create({ data: { name } })
@@ -173,6 +173,34 @@ async function main() {
       categoryId: categoriesMap["Intercontinental"],
       isHalal: true,
       imageUrl: "https://images.unsplash.com/photo-1645112411341-6c4fd023714a?auto=format&fit=crop&q=80&w=500"
+    },
+
+    // Nigerian Organic (Bwari Specials)
+    {
+      name: "Bwari Goat Meat Pepper Soup",
+      description: "Spicy, aromatic broth made with fresh local herbs and tender goat meat.",
+      price: 3000.00,
+      categoryId: categoriesMap["Nigerian Organic"],
+      isHalal: true,
+      isGlutenFree: true,
+      imageUrl: "https://images.unsplash.com/photo-1543826173-70651703c5a4?auto=format&fit=crop&q=80&w=500"
+    },
+    {
+      name: "Ofada Rice & Ayamase",
+      description: "Local unpolished rice served with spicy green pepper sauce and assorted meats.",
+      price: 4000.00,
+      categoryId: categoriesMap["Nigerian Organic"],
+      isHalal: true,
+      imageUrl: "https://images.unsplash.com/photo-1604329760661-e71dc83f8f1a?auto=format&fit=crop&q=80&w=500"
+    },
+    {
+      name: "Catfish Peppersoup (Point & Kill)",
+      description: "Fresh catfish from Usuma Dam cooked in rich spices. Bwari exclusive.",
+      price: 5000.00,
+      categoryId: categoriesMap["Nigerian Organic"],
+      isHalal: true,
+      isGlutenFree: true,
+      imageUrl: "https://images.unsplash.com/photo-1574484284002-952d92456975?auto=format&fit=crop&q=80&w=500"
     }
   ]
 
